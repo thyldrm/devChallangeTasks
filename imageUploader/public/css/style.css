@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: antiquewhite;
+}
+.container{
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.upload > h3,p,img,button{
+    margin: 10px;
+}
+
+.upload{
+    background-color: white;
+    border-radius: 15px;
+}

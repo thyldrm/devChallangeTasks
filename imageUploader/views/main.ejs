@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="/css/style.css" type="text/css">
+    <title>Document</title>
+</head>
+<style>
+    .upload1{
+        width: 450px;
+        height: 300px;
+    }
+    img {
+    max-width: 100%;
+    height: auto;
+    }
+    label{
+        
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  margin: 20px;
+  padding: 6px 18px;
+  background: #2f80ed;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+
+    }
+    </style>
+
+<body>
+    <section id="uploadImage">
+
+        <div class="container main-box">
+            <div class="upload">
+                <h3>Upload your image</h3>
+                <p>File should be Jpeg, Png...</p>
+                <img src="/img/uploadimagedragdrop.png"/>
+                <div class="form-group">
+                <p>Or</p>
+                    <form method="POST" action="/photos" class="tm-contact-form" id="form" encType="multipart/form-data">
+                        <!-- <input type="text" name="title" class="form-control rounded-0" placeholder="Name"/><br> -->
+                        <input type="file" name="image" id="img" class="file" style="display:none;"/>
+                        <label for="img" style="border: 1px solid gray;">Choose File</label>
+                        <!-- <div class="form-group mb-0">
+                            <button type="submit" class="btn btn-primary rounded-0 d-block ml-auto mr-0 tm-btn-animate tm-btn-submit tm-icon-submit"><span>Submit</span></button>
+                        </div> -->
+                    </form>
+            </div>
+            <!-- <% for(let i=0; i<photos.length; i++) { %>
+             <a href="/photos/<%= photos[i]._id %>">
+               <p><%= photos[i].title %></p> 
+                <div class="upload1">
+                    <img src="<%= photos[i].image %>"/>
+                </div>
+                
+            </a>
+            <% } %> -->
+        </div>
+    </section>
+
+
+    <script>
+
+        let inputFile = document.querySelector(".file");
+        let formSubmit = document.getElementById("form");
+    
+        inputFile.onchange = function () {
+             formSubmit.submit();
+        }
+
+        // console.log(inputFile.files)
+
+       
+
+    </script>
+</body>
+</html>

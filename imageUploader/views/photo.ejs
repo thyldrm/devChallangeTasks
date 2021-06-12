@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" type="text/css" />
+    <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/d1531cc4ce.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <style>
+    .upload {
+      width: 450px;
+      height: 300px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    i {
+      color: green;
+      width: 9px;
+      height: 9px;
+    }
+    .uptext {
+      font-size: 23px;
+    }
+  </style>
+
+  <body>
+    <section id="uploadImage">
+      <div class="container">
+        <div class="upload">
+          <h3><i class="fas fa-check-circle"></i></h3>
+          <p class="uptext">Updated Succesfuly!</p>
+          <img src="<%= photo.image %>" />
+          <input
+            type="text"
+            value="http://localhost:3000/photos/<%= photo._id %>"
+            id="copyInput"
+          />
+          <button onclick="copy()">Copy Link</button>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function copy() {
+        var copyText = document.getElementById("copyInput");
+
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* for mobile */
+
+        document.execCommand("copy");
+      }
+    </script>
+  </body>
+</html>
