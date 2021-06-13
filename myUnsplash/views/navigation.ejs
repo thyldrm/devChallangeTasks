@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+      src="https://kit.fontawesome.com/d1531cc4ce.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>Document</title>
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        
+        /* The Modal (background) */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        
+        /* Modal Content */
+        .modal-content {
+          background-color: #fefefe;
+          margin: auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%;
+        }
+        
+        /* The Close Button */
+        .closeX {
+          color: #aaaaaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+.header {
+  text-align: center;
+  padding: 32px;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+.column {
+  position: relative;
+  width: 50%;
+}
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  border-radius: 10px;
+}
+
+.middle {
+
+opacity: 0;
+  
+}
+
+.column:hover .image {
+  opacity: 0.3;
+}
+
+.column:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #04AA6D;
+  color: white;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: .5s ease;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  transform: translate(-5%, -5%);
+  -ms-transform: translate(-5%, -5%);
+  text-align: center;
+  cursor: pointer;
+}
+.text2 {
+  transition: .5s ease;
+  position: absolute;
+  bottom: 0%;
+  left: 5%;
+  text-align: center;
+}
+html.sr .load-hidden {
+  visibility: hidden;
+}
+
+</style>
+</head>
+<body>
+    <div class="container">
+      <div class="headline load-hidden">
+        <i class="fas fa-angry"></i>
+        <input type="text" placeholder="Search..">
+        <button id="addPhoto" type="button">Add</button>
+      </div>
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+              <p>Add a new Photo</p>
+              <form method="POST" action="/photos" class="tm-contact-form" id="form" encType="multipart/form-data">
+                <label for="fname">Label</label><br>
+                <input type="file" name="image" id="img" class="file"><br><br>
+                <label for="lname">Photo Url</label><br>
+                <input type="text" id="lname" name="lname"><br><br>
+                <input type="submit" value="Submit">
+                <span  class="close">Cancel</span>
+              </form>
+            </div>
+          </div>
+          
+
+              
+    </div>
+    
+      <div class="row widget-list"> 
+        <% for(let i=0;i<photos.length;i++) { %>
+        <div class="column headline widget">
+          <img src="<%= photos[i].image %>" style="width:100%" class="image">
+          <div class="middle">
+            <div id="deletePhoto" type="button" class="text deletePhoto">delete</div>
+            <div class="text2">lorem  asdasdasd</div>
+          </div>
+
+         
+          
+        </div>
+
+        
+        
+        
+        <% } %>
+        <div id="myModal1" class="modal myModal1">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <p>delete</p>
+            <form>
+              <label for="lname">password</label><br>
+              <input class="password" type="text" value="SİKİK MURAT"><br><br>
+              <input type="submit" value="Submit">
+              <span  class="close1">Cancel</span>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      
+        
+       
+    <div class="result"></div>
+
+    <script>
+      
+      
+     ScrollReveal().reveal('.headline', { duration: 2000 });
+     ScrollReveal().reveal('.widget', { interval: 200 });
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        var modal1 = document.querySelector(".myModal1");
+        var buttons = document.querySelectorAll(".deletePhoto");
+        var password = document.querySelector(".password");
+        
+        // Get the button that opens the modal
+        var btn = document.getElementById("addPhoto");
+        var btn1 = document.getElementById("deletePhoto");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        var span1 = document.getElementsByClassName("close1")[0];
+        
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+
+        var pw = "1234";
+
+        password.addEventListener('change', updateValue);
+        function updateValue(e) {
+        console.log(e.target.value)
+        if(pw==e.target.value){
+          console.log("deleted")
+        }
+}
+
+        for(var i=0;i<buttons.length;i++){
+          var btn1 = buttons[i];
+          btn1.onclick = function() {
+            modal1.style.display = "block";
+          }
+        }
+
+        
+        
+        
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        span1.onclick = function() {
+          modal1.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        window.onclick = function(event) {
+          if (event.target == modal1) {
+            modal1.style.display = "none";
+          }
+        }
+        </script>
+</body>
+</html>
