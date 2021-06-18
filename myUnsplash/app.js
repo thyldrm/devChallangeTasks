@@ -34,17 +34,13 @@ app.use(
 //ROUTES
 app.get("/", async (req, res) => {
   const photos = await Photo.find({});
-  res.render("navigation", {
+  res.render("index", {
     photos,
   });
 });
 
 app.post("/photos", async (req, res) => {
-  //console.log(req.files.image)
-  //await Photo.create(req.body)
-  //console.log(req.body)
-  //res.redirect("/");
-  //console.log(req.params.id)
+
 
   const uploadDir = "public/uploads";
 
@@ -63,6 +59,15 @@ app.post("/photos", async (req, res) => {
     res.redirect("/");
   });
 });
+
+app.delete("/:id", async (req,res)=>{
+  
+  const photo = await Photo.findOne({ _id: req.params.id });
+  let deletedImage = __dirname + '/public' + photo.image;
+  fs.unlinkSync(deletedImage);
+  await Photo.findByIdAndRemove(req.params.id);
+  res.redirect('/');
+})
 
 const port = 3000;
 
